@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\data"
+    "\\data",
+    "\\pyrosim"
   ],
-  "SelectedNode": "\\analyze.py",
+  "SelectedNode": "\\simulation.py",
   "PreviewInSolutionExplorer": false
 }
