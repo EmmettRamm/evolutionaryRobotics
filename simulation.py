@@ -21,7 +21,7 @@ pi = numpy.pi
 #initializing the loop length
 loop = 1000
 
-targetAngles = numpy.sin(numpy.array(numpy.linspace(0, 2*pi, loop)))
+targetAngles = numpy.sin(numpy.array(numpy.linspace(0, 2*pi, loop))) * pi/4
 
 numpy.save("data/sinvectordata.npy", targetAngles)
 exit()
