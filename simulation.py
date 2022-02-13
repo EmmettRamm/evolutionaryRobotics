@@ -21,10 +21,19 @@ pi = numpy.pi
 #initializing the loop length
 loop = 1000
 
-targetAngles = numpy.sin(numpy.array(numpy.linspace(0, 2*pi, loop))) * pi/4
+bAmplitude = pi/4
+fAmplitude = 1
 
-numpy.save("data/sinvectordata.npy", targetAngles)
-exit()
+bFrequency = 10
+fFrequency = 10
+
+bPhaseOffset = 0
+fPhaseOffset = 0
+
+bTargetAngles = bAmplitude * (numpy.sin(bFrequency * numpy.array(numpy.linspace(0, 2*pi, loop)) + bPhaseOffset))
+fTargetAngles = fAmplitude * (numpy.sin(fFrequency * numpy.array(numpy.linspace(0, 2*pi, loop)) + fPhaseOffset))
+numpy.save("data/bSinVectorData.npy", bTargetAngles)
+numpy.save("data/fSinVectorData.npy", fTargetAngles)
 
 #setting up sensors
 backLegSensorValues = numpy.zeros(loop)
@@ -45,17 +54,17 @@ for i in range(loop):
     bodyIndex = robotId,
     jointName = "Torso_BackLeg",
     controlMode = p.POSITION_CONTROL,
-    targetPosition = random.uniform(-pi/2.0, pi/2.0),
-    maxForce = 50)
+    targetPosition = bTargetAngles[i],
+    maxForce = 20)
 
     pyrosim.Set_Motor_For_Joint(
     bodyIndex = robotId,
     jointName = "Torso_FrontLeg",
     controlMode = p.POSITION_CONTROL,
-    targetPosition = random.uniform(-pi/2.0, pi/2.0),
-    maxForce = 50)
+    targetPosition = fTargetAngles[i],
+    maxForce = 20)
 
-    time.sleep(1/30)
+    time.sleep(1/240)
     
 numpy.save("data/backLegSensorData.npy", backLegSensorValues)
 numpy.save("data/frontLegSensorData.npy", frontLegSensorValues)
