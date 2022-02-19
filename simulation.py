@@ -4,70 +4,46 @@ import time
 import pyrosim.pyrosim as pyrosim
 import numpy
 import random
+import constants as c
+import world as w
+import robot as r
 
-#setting gravity
-physicsClient = p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0,0,-9.8)
+class SIMULATION:
+    def __init__(self):
+        #setting gravity
+        self.physicsClient = p.connect(p.GUI)
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.setGravity(0,0,c.gravity)
 
-#loading in the floor plane, the robot, and the world
-planeId = p.loadURDF("plane.urdf")
-robotId = p.loadURDF("body.urdf")
-p.loadSDF("world.sdf")
+        self.world = w.WORLD()
+        self.robot = r.ROBOT()
 
-#simplifying pi
-pi = numpy.pi
+        #preping to simulate the robot
+        
 
-#initializing the loop length
-loop = 1000
+    def run():
+        for i in range(c.loop):
+            p.stepSimulation()
+            #backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
+            #frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
 
-bAmplitude = pi/4
-fAmplitude = 1
+            #pyrosim.Set_Motor_For_Joint(
+            #bodyIndex = robot.robotId,
+            #jointName = "Torso_BackLeg",
+            #controlMode = p.POSITION_CONTROL,
+            #targetPosition = bTargetAngles[i],
+            #maxForce = c.bMaxForce)
 
-bFrequency = 10
-fFrequency = 10
+            #pyrosim.Set_Motor_For_Joint(
+            #bodyIndex = robot.robotId,
+            #jointName = "Torso_FrontLeg",
+            #controlMode = p.POSITION_CONTROL,
+            #targetPosition = fTargetAngles[i],
+            #maxForce = c.fMaxForce)
 
-bPhaseOffset = 0
-fPhaseOffset = 0
+            time.sleep(c.sleepTime)
+        
+    def __del__(self):
+        p.disconnect()
 
-bTargetAngles = bAmplitude * (numpy.sin(bFrequency * numpy.array(numpy.linspace(0, 2*pi, loop)) + bPhaseOffset))
-fTargetAngles = fAmplitude * (numpy.sin(fFrequency * numpy.array(numpy.linspace(0, 2*pi, loop)) + fPhaseOffset))
-numpy.save("data/bSinVectorData.npy", bTargetAngles)
-numpy.save("data/fSinVectorData.npy", fTargetAngles)
-
-#setting up sensors
-backLegSensorValues = numpy.zeros(loop)
-frontLegSensorValues = numpy.zeros(loop)
-print(backLegSensorValues)
-print(frontLegSensorValues)
-
-#preping to simulate the robot
-pyrosim.Prepare_To_Simulate(robotId)
-
-#loop for simulation
-for i in range(loop):
-    p.stepSimulation()
-    backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-    frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
-
-    pyrosim.Set_Motor_For_Joint(
-    bodyIndex = robotId,
-    jointName = "Torso_BackLeg",
-    controlMode = p.POSITION_CONTROL,
-    targetPosition = bTargetAngles[i],
-    maxForce = 20)
-
-    pyrosim.Set_Motor_For_Joint(
-    bodyIndex = robotId,
-    jointName = "Torso_FrontLeg",
-    controlMode = p.POSITION_CONTROL,
-    targetPosition = fTargetAngles[i],
-    maxForce = 20)
-
-    time.sleep(1/240)
     
-numpy.save("data/backLegSensorData.npy", backLegSensorValues)
-numpy.save("data/frontLegSensorData.npy", frontLegSensorValues)
-p.disconnect()
-print(backLegSensorValues)
-print(frontLegSensorValues)
