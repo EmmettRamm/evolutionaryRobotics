@@ -8,7 +8,7 @@ import constants as c
 from simulation import SIMULATION
 
 simulation = SIMULATION()
-SIMULATION.run()
+simulation.run()
 
 #bTargetAngles = c.bAmplitude * (numpy.sin(c.bFrequency * numpy.array(numpy.linspace(c.bottomAngleRange, c.topAngleRange, c.loop)) + c.bPhaseOffset))
 #fTargetAngles = c.fAmplitude * (numpy.sin(c.fFrequency * numpy.array(numpy.linspace(c.bottomAngleRange, c.topAngleRange, c.loop)) + c.fPhaseOffset))
