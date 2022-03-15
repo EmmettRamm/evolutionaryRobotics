@@ -2,7 +2,7 @@ import numpy
 
 gravity = -9.8
 zero = 0
-loop = 1000
+loop = 100
 pi = numpy.pi
 sleepTime = 1/240
 
