@@ -26,9 +26,9 @@ class HILL_CLIMBER:
         self.child.Mutate()
 
     def Select(self):
-        if self.parent.fitness > self.child.fitness:
+        if (self.parent.fitness > self.child.fitness):
             self.parent = self.child
 
 
     def Show_Best(self):
-        os.system("python3 simulate.py GUI")
+        os.system("python simulate.py GUI")

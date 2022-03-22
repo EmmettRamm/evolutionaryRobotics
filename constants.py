@@ -22,3 +22,5 @@ bottomAngleRange = 0
 topAngleRange = 2*pi
 
 numberOfGenerations = 3
+
+populationSize = 2
