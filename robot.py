@@ -5,17 +5,28 @@ import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import numpy
 import random
+import os
 import constants as c
 import sensor as s
 import motor as m
 
 class ROBOT:    
-    def __init__(self):
+    def __init__(self, solutionID):
+        self.ID = str(solutionID)
+        brainFile = "brain" + self.ID + ".nndf"
+        
         self.robotId = p.loadURDF("body.urdf")
-        self.nn = NEURAL_NETWORK("brain.nndf")
+        self.nn = NEURAL_NETWORK(brainFile)
+        self.Delete_File()
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
+        
+        self.fitnessFileName = "fitness" + self.ID + ".txt"
+
+    def Delete_File(self):
+        sysOut = "del brain" + self.ID + ".nndf"
+        os.system(sysOut)
 
     def Prepare_To_Sense(self):
         self.sensors = dict()
@@ -47,10 +58,15 @@ class ROBOT:
         stateOfLinkZero = p.getLinkState(self.robotId, 0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        outFile = open("fitness.txt", "w")
+        tempFitness = "tmp" + str(self.ID) + ".txt"
+        outFile = open(tempFitness, "w")
         outFile.write(str(xCoordinateOfLinkZero))
         outFile.close()
+        outCommand = "rename " + tempFitness + " " + self.fitnessFileName
+        #print (outCommand)
+        os.system(outCommand)
+        
 
-        print ("\n", xCoordinateOfLinkZero)
+        #print ("\n", xCoordinateOfLinkZero)
 
         exit()

@@ -2,7 +2,7 @@ import numpy
 
 gravity = -9.8
 zero = 0
-loop = 500
+loop = 1000
 pi = numpy.pi
 sleepTime = 1/240
 
@@ -21,6 +21,6 @@ fMaxForce = 20
 bottomAngleRange = 0
 topAngleRange = 2*pi
 
-numberOfGenerations = 3
+numberOfGenerations = 10
 
-populationSize = 2
+populationSize = 10
