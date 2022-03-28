@@ -24,5 +24,5 @@ topAngleRange = 2*pi
 numberOfGenerations = 1
 populationSize = 1
 
-numSensorNeurons = 3
-numMotorNeurons = 2
+numSensorNeurons = 9
+numMotorNeurons = 8

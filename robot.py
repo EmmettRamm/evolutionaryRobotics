@@ -17,7 +17,7 @@ class ROBOT:
         
         self.robotId = p.loadURDF("body.urdf")
         self.nn = NEURAL_NETWORK(brainFile)
-        self.Delete_File()
+        #self.Delete_File()
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
         self.Prepare_To_Act()

@@ -50,7 +50,7 @@
             </geometry>
         </collision>
     </link>
-    <joint name="Torso_FrontLowerLeg" type="revolute">
+    <joint name="FrontLeg_FrontLowerLeg" type="revolute">
        <parent link="FrontLeg"/>
        <child  link="FrontLowerLeg"/>
        <origin rpy="0 0 0" xyz="0 1 0" />
@@ -108,7 +108,7 @@
             </geometry>
         </collision>
     </link>
-    <joint name="Torso_BackLowerLeg" type="revolute">
+    <joint name="BackLeg_BackLowerLeg" type="revolute">
        <parent link="BackLeg"/>
        <child  link="BackLowerLeg"/>
        <origin rpy="0 0 0" xyz="0 -1 0" />
@@ -166,7 +166,7 @@
             </geometry>
         </collision>
     </link>
-    <joint name="Torso_LeftLowerLeg" type="revolute">
+    <joint name="LeftLeg_LeftLowerLeg" type="revolute">
        <parent link="LeftLeg"/>
        <child  link="LeftLowerLeg"/>
        <origin rpy="0 0 0" xyz="-1 0 0" />
@@ -224,7 +224,7 @@
             </geometry>
         </collision>
     </link>
-    <joint name="Torso_RightLowerLeg" type="revolute">
+    <joint name="RightLeg_RightLowerLeg" type="revolute">
        <parent link="RightLeg"/>
        <child  link="RightLowerLeg"/>
        <origin rpy="0 0 0" xyz="1 0 0" />

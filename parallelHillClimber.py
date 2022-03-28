@@ -22,10 +22,6 @@ class PARALLEL_HILL_CLIMBER:
         for parent in range(0, len(solutions)):
             solutions[parent].Wait_For_Simulation_To_End()
 
-        
-
-        
-
     def Evolve(self):
         
         #self.parent.Evaluate("GUI")
