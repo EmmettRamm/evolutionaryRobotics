@@ -21,7 +21,7 @@ fMaxForce = 20
 bottomAngleRange = 0
 topAngleRange = 2*pi
 
-numberOfGenerations = 5
+numberOfGenerations = 6
 populationSize = 10
 
 numSensorNeurons = 9
