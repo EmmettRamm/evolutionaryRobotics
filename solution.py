@@ -29,7 +29,9 @@ class SOLUTION:
         self.fitness = float(fitnessFile.read())
         fitnessFile.close()
 
-        os.system("del " + openFile)
+        delString = "del " + openFile
+
+        os.system(delString)
 
 
     def Create_World(self):
