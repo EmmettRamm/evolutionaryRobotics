@@ -2,9 +2,9 @@ import numpy
 
 gravity = -9.8
 zero = 0
-loop = 2000
+loop = 1500
 pi = numpy.pi
-sleepTime = 1/500
+sleepTime = 1/240
 
 bAmplitude = pi/4
 fAmplitude = 1
@@ -21,8 +21,8 @@ fMaxForce = 20
 bottomAngleRange = 0
 topAngleRange = 2*pi
 
-numberOfGenerations = 2
-populationSize = 2
+numberOfGenerations = 5
+populationSize = 5
 
 numSensorNeurons = 9
 numMotorNeurons = 8
