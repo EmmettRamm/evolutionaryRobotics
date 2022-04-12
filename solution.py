@@ -38,6 +38,11 @@ class SOLUTION:
         pyrosim.Start_SDF("world.sdf")
 
         pyrosim.Send_Cube(name="block", pos=[0,0,.5], size=[10,5,1])
+        pyrosim.Send_Cube(name="obstical1", pos=[-1,-1.4,1.5], size=[.3,.5,.3])
+        pyrosim.Send_Cube(name="obstical2", pos=[-1.3,1.3,1.5], size=[.3,.5,.3])
+        pyrosim.Send_Cube(name="obstical3", pos=[-2.3,0,1.5], size=[1,1,1])
+        #pyrosim.Send_Cube(name="obstical1", pos=[-2,-2,1.5], size=[.3,.3,.3])
+        #pyrosim.Send_Cube(name="obstical1", pos=[-2,-2,1.5], size=[.3,.3,.3])
 
         pyrosim.End()
 
