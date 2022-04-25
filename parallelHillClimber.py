@@ -29,7 +29,7 @@ class PARALLEL_HILL_CLIMBER:
         #print (self.parents)
         self.Evaluate(self.parents)
 
-        for currentGeneration in range(c.numberOfGenerations):
+        for currentGeneration in range(0, c.numberOfGenerations):
             self.Evolve_For_One_Generation()
         
 

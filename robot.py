@@ -14,18 +14,20 @@ class ROBOT:
     def __init__(self, solutionID):
         self.ID = str(solutionID)
         brainFile = "brain" + self.ID + ".nndf"
+        print (brainFile)
         
         self.robotId = p.loadURDF("urdf/body.urdf")
         self.nn = NEURAL_NETWORK(brainFile)
-        self.Delete_File()
+        self.Delete_File(brainFile)
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         
         self.fitnessFileName = "fitness" + self.ID + ".txt"
 
-    def Delete_File(self):
-        sysOut = "del brain" + self.ID + ".nndf"
+    def Delete_File(self, fileToDelete):
+        sysOut = "del " + fileToDelete
+        print (sysOut)
         os.system(sysOut)
 
     def Prepare_To_Sense(self):
